@@ -1,0 +1,1261 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Finally! Layout in CSS</title>
+
+    <meta name="description" content="Topics for eBook/Open Web collaboration">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/business-card.css">
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+    <style>
+      li {
+        line-height: 1.4em;
+      }
+      img {border:0 none;}
+
+      .left {
+        width: 45%;
+        float: left;
+      }
+      .right {
+        width: 45%;
+        float: right;
+      }
+
+      .flex-container {
+        display: -webkit-flex;
+        display: flex;
+      }
+      #center-example {
+        border: thick black solid;
+        width: 200px;
+        height: 300px;
+        margin: auto;
+      }
+      #center-example-box {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        margin: auto;
+       
+      }
+      #center-example:hover {
+        -webkit-animation-duration: 2s;
+        -webkit-animation-name: resize-height;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-direction: alternate;
+        -moz-animation-duration: 2s;
+        -moz-animation-name: resize-height;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-direction: alternate;
+      }
+      @-webkit-keyframes resize-height { from { height: 300px; } to { height: 500px; } }
+      @-moz-keyframes resize-height { from { height: 300px; } to { height: 500px; } }
+
+      #basic-flexing {
+        border: thick black solid;
+        width: 300px;
+        margin: auto;
+      }
+      #basic-flexing-one {
+        min-width: 150px;
+        height: 100px;
+        background-color: lightgreen;
+        -webkit-flex: 1 auto;
+        flex: 1 auto;
+      }
+      #basic-flexing-two {
+        min-width: 150px;
+        height: 100px;
+        background-color: lightblue;
+        -webkit-flex: 2 auto;
+        flex: 2 auto;
+      }
+      #basic-flexing:hover {
+        -webkit-animation-duration: 2s;
+        -webkit-animation-name: resize-width;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-direction: alternate;
+        -moz-animation-duration: 2s;
+        -moz-animation-name: resize-width;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-direction: alternate;
+      }
+
+      @-webkit-keyframes resize-width { from { width: 300px; } to { width: 800px; } }
+      @-moz-keyframes resize-width { from { width: 300px; } to { width: 800px; } }
+
+	    #space-flexing {
+	        border: thick black solid;
+	        width: 300px;
+	        margin: auto;
+	        margin-top: 10px;
+	    }
+	    #space-flexing-one {
+	        min-width: 100px;
+	        max-width: 150px;
+	        -webkit-flex: 1;
+	        height: 100px;
+	        background-color: lightgreen;
+	        margin-left: auto;
+	      }
+	    #space-flexing-two {
+	      min-width: 100px;
+	      max-width: 150px;
+	      -webkit-flex: 1;
+	      height: 100px;
+	      background-color: lightblue;
+	      margin-right: auto;
+	    }
+	    #space-flexing-three {
+	      min-width: 100px;
+	      max-width: 150px;
+	      -webkit-flex: 1;
+	      height: 100px;
+	      background-color: yellow;
+	      margin-left: auto;
+	    }
+	    #space-flexing:hover {
+	      -webkit-animation-duration: 2s;
+	      -webkit-animation-name: resize-width;
+	      -webkit-animation-iteration-count: infinite;
+	      -webkit-animation-direction: alternate;
+	      -moz-animation-duration: 2s;
+	      -moz-animation-name: resize-width;
+	      -moz-animation-iteration-count: infinite;
+	      -moz-animation-direction: alternate;
+	    }
+	    #order-flexing {
+	      border: thick black solid;
+	      margin: auto;
+	      width: 300px;
+	      -webkit-justify-content: space-around;
+	      justify-content: space-around;
+	    }
+
+	    .demo:hover {
+	      -webkit-animation-duration: 2s;
+	      -webkit-animation-name: change-width;
+	      -webkit-animation-iteration-count: infinite;
+	      -webkit-animation-direction: alternate;
+	      -moz-animation-duration: 2s;
+	      -moz-animation-name: change-width;
+	      -moz-animation-iteration-count: infinite;
+	      -moz-animation-direction: alternate;
+	    }
+	    @-webkit-keyframes change-width { from { width: 80%; } to { width: 40%; } }
+	    @-moz-keyframes change-width { from { width: 80%; } to { width: 40%; } }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+<section>
+<h3>Finally! Layout in CSS</h3>
+<h4>Alan Stearns</h4>
+</section>
+
+<section class="home">
+  <h3>About me</h3>
+  <div  style="display:inline-block; margin-left: 50px">
+    <div class="business-card">
+      <p class="name">Alan Stearns</p>
+      <p class="title">Computer Scientist</p>
+      <p class="team">Web Platform</p>
+      <p class="contact-info">
+          <a href="mailto:stearns@adobe.com">stearns@adobe.com</a><br>
+          <a href="http://twitter.com/alanstearns">@alanstearns</a><br>
+      </p>
+    </div>
+  </div>
+  <div style="display:inline-block">
+     <img id="head-shot" src="images/top-square.jpg"/>
+  </div>
+</section>
+
+<section>
+<h3>What We're Covering</h3>
+<ul>
+<li>Flexible Box Layout</li>
+<li>Grid Layout</li>
+<li>Exclusions</li>
+<li>Shapes</li>
+<li>Regions</li>
+</ul>
+</section>
+
+<section>
+<h3>Five Specifications</h3>
+<ul>
+<li>First, run through the concepts of each - no code</li>
+<li>Second, show you the code</li>
+<li>Third, demos</li>
+</ul>
+</section>
+
+<section>
+<h3>Flexible Box Layout</h3>
+<p>Sane CSS Layout</p>
+</section>
+
+<section>
+  <style scoped>
+      #flexContainer {
+          float: left;
+          display: -webkit-flex;
+          display: flex;
+          position: relative;
+          width: 80%;
+          margin-top: 25px;
+          margin-left: 50px;
+          border: thin solid lightgray;
+      }
+      .line {
+          position: absolute;
+          border-top: 4px black solid;
+          width: 100%;
+          height: 0px;
+          top: 50%;
+          left: 0px;
+          margin-top: -2px;
+          z-index: -1;
+      }
+      .item {
+          width: 20%;
+          text-align: center;
+      }
+      .one {
+          background-color: #fcc;
+          font-size: 24pt;
+      }
+      .two {
+          background-color: #cfc;
+          font-size: 18pt;
+      }
+      .three {
+          background-color: #ccf;
+          font-size: 24pt;
+      }
+      .side-buttons {
+      	float: left;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        margin-top: 25px;
+      }
+      p, button{
+          margin:0;
+      }
+  </style>
+  <h3>One-Dimensional Layout</h3>
+  <div id="flexyButtons">
+  <div id="flexContainer" style="z-index:1" contenteditable="true">
+      <div class="line"></div>
+      <div class="item one"><p>One</p></div>
+      <div class="item two"><p>Two</p><p>Two</p></div>
+      <div class="item three"><p>Three</p><p>Three</p><p>Three</p></div>
+  </div>
+  <div class="side-buttons">
+      <button name="alignItems">flex-start</button>
+      <button name="alignItems">flex-end</button>
+      <button name="alignItems">center</button>
+      <button name="alignItems">stretch</button>
+      <button name="alignItems">baseline</button>
+  </div>        
+  <div style="clear:left;">
+      <button name="justifyContent">flex-start</button>
+      <button name="justifyContent">flex-end</button>
+      <button name="justifyContent">center</button>
+      <button name="justifyContent">space-between</button>
+      <button name="justifyContent">space-around</button>
+  </div>
+  </div>
+</section>
+
+<section>
+  <section>
+    <h3>Vertical centering</h3>
+  </section>
+  <section>
+    <div class="flex-container" id="center-example">
+      <div id="center-example-box"></div>
+    </div>
+  </section>
+</section>
+
+<section>
+  <h3>Flexing</h3>
+  <div class="flex-container" id="basic-flexing">
+    <div id="basic-flexing-one">1</div>
+    <div id="basic-flexing-two">2</div>
+  </div>
+</section>
+
+<section>
+  <h3>Rearranging Order</h3>
+  <div class="flex-container" id="order-flexing" onclick="orderB.style.webkitOrder = '-1';orderB.style.order = '-1'">
+    <div>A</div>
+    <div id="orderB">B</div>
+    <div>C</div>
+  </div>
+</section>
+
+<section>
+  <h3>&ldquo;Holy Grail&rdquo; Layout</h3>
+  <img style="border:0;" src="images/flexbox-holygrail.svg" alt="css holy grail layout"></img>
+</section>
+
+<section>
+  <h3>And More</h3>
+</section>
+
+<section>
+<h3>Grid Layout</h3>
+<p>Full 2D</p>
+  <img style="border:0;" src="images/dotted-grid.png" alt="3x3 grid"></img>
+</section>
+
+<section>
+  <section>
+  <h3>defining grid lines</h3>
+  <div class="left">
+    <ul>
+      <li>lengths/percentages</li>
+      <li>based on content</li>
+      <li>flexing</li>
+    </ul>
+  </div>
+  <div class="right">
+    <img style="border:0;" src="images/dot-grid-label-0.png" alt="3x3 grid"></img>
+  </div>
+  </section>
+  <section>
+  <h3>defining grid lines</h3>
+  <div class="left">
+    <ul>
+      <li style="color:green;">lengths/percentages</li>
+      <li>based on content</li>
+      <li>flexing</li>
+    </ul>
+  </div>
+  <div class="right">
+    <img style="border:0;" src="images/dot-grid-label-1.png" alt="3x3 grid with fixed columns"></img>
+  </div>
+  </section>
+  <section>
+  <h3>defining grid lines</h3>
+  <div class="left">
+    <ul>
+      <li style="color:green;">lengths/percentages</li>
+      <li style="color:blue;">based on content</li>
+      <li>flexing</li>
+    </ul>
+  </div>
+  <div class="right">
+    <img style="border:0;" src="images/dot-grid-label-2.png" alt="3x3 grid with fixed columns and content-based heights"></img>
+  </div>
+  </section>
+  <section>
+  <h3>defining grid lines</h3>
+  <div class="left">
+    <ul>
+      <li style="color:green;">lengths/percentages</li>
+      <li style="color:blue;">based on content</li>
+      <li style="color:red;">flexing</li>
+    </ul>
+  </div>
+  <div class="right">
+    <img style="border:0;" src="images/dot-grid-label-3.png" alt="3x3 grid with fixed columns, content-based heights and flexing center column"></img>
+  </div>
+  </section>
+</section>
+
+<section>
+  <h3>grid item placement</h3>
+  <img style="border:0;" src="images/dot-grid-placement.png" alt="placing elements on a grid"></img>
+</section>
+
+<section>
+  <h3>grid item alignment</h3>
+  <img style="border:0;" src="images/dot-grid-alignment.png" alt="aligning elements within their grid placement"></img>
+</section>
+
+<section>
+  <h3>grid item overlap</h3>
+  <img style="border:0;" src="images/dot-grid-overlap.png" alt="placing an overlapping grid item"></img>
+</section>
+
+<section>
+<h3>grid implementations are catching up to spec changes</h3>
+</section>
+
+<section>
+<h3>Exclusions</h3>
+</section>
+
+<section>
+<section>
+  <h3>Wrapping with Floats</h3>
+  <img style="border:0;" src="images/wrap-float.png" alt="float example"></img>
+</section>
+<section>
+  <h3>Wrapping anywhere with Exclusions</h3>
+  <img style="border:0;" src="images/wrap-exclusion.png" alt="exclusion example"></img>
+</section>
+</section>
+
+<section>
+<h3>Shapes</h3>
+  <img style="border:0;" src="images/grid_cssexclusions.png" alt="shape examples"></img>
+</section>
+
+<section>
+<h3>Regions</h3>
+<p>Define where content flows</p>
+</section>
+
+<section>
+  <style scoped>
+    p {
+      font-size: 8px;
+      text-align: left;
+      text-indent: 1em;
+      margin: 0;
+    }
+    .screen {
+      position: absolute;
+      border: thin red solid;
+      width: 100%;
+      height: 150px;
+    }
+    .demo {
+      margin: 20px;
+      position: relative;
+      height: 300px;
+      width: 80%;
+    }
+    .regionized > p {
+      -webkit-flow-into: demo-flow;
+    }
+    .top-region {
+      -webkit-flow-from: demo-flow;
+      height: 80px;
+    }
+    .bottom-region {
+      -webkit-flow-from: demo-flow;
+    }
+  </style>
+<h3>Simple Regions example</h3>
+<div class="left">
+  <div class="demo">
+    <div class="screen"></div>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+    <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+  </div>
+</div>
+<div class="right">
+    <div class="demo regionized">
+    <div class="screen"></div>
+    <div class="top-region"></div>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+    <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+    <div class="bottom-region"></div>
+  </div>
+</div>
+</section>
+
+<section>
+  <style scoped>
+  div > p {
+    font-size: 8px;
+    text-align: left;
+    text-indent: 1em;
+    margin: 0;
+  }
+  .step {
+    margin: 20px;
+    position: relative;
+    height: 300px;
+    width: 80%;
+  }
+  .source {
+  	color: lightgray;
+  }
+  </style>
+	<h3>Named Flows</h3>
+	<p>Pull content from the normal flow and give it a label</p>
+	<div class="left">
+	<div class="step source">
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+ 	  <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+	</div>
+	</div>
+	<div class="right">
+	<div class="step" style="border: thin dashed black;">
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+  </div>
+</div>
+</section>
+
+<section>
+	<style scoped>
+	  div > p {
+	    font-size: 8px;
+	    text-align: left;
+	    text-indent: 1em;
+	    margin: 0;
+	  }
+	  .step {
+	    margin: 20px;
+	    position: relative;
+	    height: 300px;
+	    width: 80%;
+	  }
+	  .one {
+	  	height: 90px;
+	  }
+	  .two {
+	  	float: right;
+	  }
+	  .box {
+	  	width: 80%;
+	  	border: thin solid lightblue;
+	  }
+    .regionized > p {
+      -webkit-flow-into: step-flow;
+    }
+    .regionized > .box {
+      -webkit-flow-from: step-flow;
+    }
+
+  </style>
+<h3>CSS Regions</h3>
+<p>Define boxes to display the named flow content</p>
+	<div class="left">
+	<div class="step">
+    <div class="box one"></div>
+ 	  <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+    <div class="box two"></div>
+	</div>
+	</div>
+	<div class="right">
+	<div class="step regionized">
+    <div class="box one"></div>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+ 	  <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+    <div class="box two"></div>
+	</div>
+	</div>
+</section>
+
+<section>
+  <h3>Recap</h3>
+<ul>
+<li>Flexible Box Layout</li>
+<li>Grid Layout</li>
+<li>Exclusions</li>
+<li>Shapes</li>
+<li>Regions</li>
+</ul>
+</section>
+
+<section>
+<h3>Flexible Box Layout (code)</h3>
+</section>
+
+<section>
+  <section>
+    <h3>flex container</h3>
+    <pre><code>
+display: flex;
+
+display: inline-flex;
+    </code></pre>
+  </section>
+  <section>
+    <h3>flex container direction</h3>
+    <pre><code>
+flex-direction: row;
+flex-direction: column;
+
+flex-direction: row-reverse;
+flex-direction: column-reverse;
+    </code></pre>
+  </section>
+  <section>
+    <h3>flex container - distribution</h3>
+    <pre><code>
+justify-content: flex-start;
+    </code></pre>
+    <img src="images/flex-pack.svg" alt="justify-content options"></img>
+  </section>
+  <section>
+    <h3>flex container - alignment</h3>
+    <pre><code>
+align-items: stretch;
+    </code></pre>
+    <img src="images/flex-align.svg" alt="align-items options"></img>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h3>flex items</h3>
+    <pre><code>
+// no code required!
+    </code></pre>
+  </section>
+  <section>
+    <h3>flex items - alignment</h3>
+    <pre><code>
+align-self: auto;
+    </code></pre>
+    <img src="images/flex-align.svg" alt="align-self options"></img>
+  </section>
+  <section>
+    <h3>flex items - order</h3>
+    <pre><code>
+order: &lt;integer&gt;;
+    </code></pre>
+  </section>
+  <section>
+    <h3>flex items - flexing</h3>
+    <pre><code>
+flex: &lt;positive integer&gt;;
+    </code></pre>
+    <div class="flex-container" id="basic-flexing">
+      <div id="basic-flexing-one"></div>
+      <div id="basic-flexing-two"></div>
+    </div>
+    <pre><code>
+.green {
+  min-width: 150px;
+  flex: 1;
+}
+.blue {
+  min-width: 150px;
+  flex: 2;
+}
+    </code></pre>
+  </section>
+  <section>
+    <h3>flex items - flexing space</h3>
+    <pre><code>
+any margin property: auto;
+    </code></pre>
+    <div class="flex-container" id="space-flexing">
+      <div id="space-flexing-one"></div>
+      <div id="space-flexing-two"></div>
+      <div id="space-flexing-three"></div>
+    </div>
+    <pre><code>
+.items {
+  min-width: 100px;
+  max-width: 150px;
+  flex: 1;
+}
+.green,
+.yellow {
+  margin-left:  auto;
+}
+.blue {
+  margin-right: auto;
+}
+    </code></pre>
+  </section>
+</section>
+
+<section>
+  <h3>Vertical Center Styling</h3>
+
+  <div class="left">
+  <pre><code>
+.flex-container {
+  display: flex;
+}
+.flex-item {
+  margin: auto;
+}
+  </code></pre>
+</div>
+  <span style="line-height:4em;">OR</span>
+  <div class="right">
+  <pre><code>
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  </code></pre>
+</div>
+
+</section>
+
+<section>
+  <style scoped>
+    .grail > header {
+      background-color: lightgreen;
+    }
+    .grail > article {
+      background-color: lightblue;
+    }
+    .grail > nav {
+      background-color: cornsilk;
+    }
+    .grail > aside {
+      background-color: peachpuff;
+    }
+    .grail > footer {
+      background-color: lightgreen;
+    }
+  </style>
+<section>
+  <h3>Holy Grail Styling</h3>
+  <div class="left">
+  <pre><code>
+&lt;header&gt;H&lt;/header&gt;
+&lt;article&gt;ART&lt;/article&gt;
+&lt;nav&gt;N&lt;/nav&gt;
+&lt;aside&gt;A&lt;/aside&gt;
+&lt;footer&gt;F&lt;/footer&gt;
+  </code></pre>
+</div>
+<div class="right grail">
+  <header>H</header>
+  <article>A<br>R<br>T</article>
+  <nav>N</nav>
+  <aside>A</aside>
+  <footer>F</footer>
+</div>
+</section>
+<section>
+  <h3>Flex Wrapper</h3>
+  <div class="left">
+  <pre><code>
+&lt;header&gt;H&lt;/header&gt;
+&lt;div class="flex-container"&gt;
+  &lt;article&gt;ART&lt;/article&gt;
+  &lt;nav&gt;N&lt;/nav&gt;
+  &lt;aside&gt;A&lt;/aside&gt;
+&lt;/div&gt;
+&lt;footer&gt;F&lt;/footer&gt;
+  </code></pre>
+<pre><code>
+.flex-container {
+  display: flex;
+}
+  </code></pre>
+</div>
+<div class="right grail">
+  <header>H</header>
+  <div class="flex-container grail">
+    <article>A<br>R<br>T</article>
+    <nav>N</nav>
+    <aside>A</aside>
+  </div>
+  <footer>F</footer>
+</div>
+</section>
+<section>
+  <h3>Reorder Content</h3>
+  <div class="left">
+<pre><code>
+.flex-container {
+  display: flex;
+}
+nav {
+  order: -1;
+}
+  </code></pre>
+</div>
+<div class="right grail">
+  <header>H</header>
+  <div class="flex-container grail">
+    <article>A<br>R<br>T</article>
+    <nav style="-webkit-order:-1;order:-1;">N</nav>
+    <aside>A</aside>
+  </div>
+  <footer>F</footer>
+</div>
+</section>
+<section>
+  <style scoped>
+    .flex-container > * {
+      min-width: 100px;
+    }
+  </style>
+  <h3>Flex item min-width</h3>
+  <div class="left">
+<pre><code>
+.flex-container {
+  display: flex;
+}
+.flex-container > * {
+  min-width: 100px;
+}
+nav {
+  order: -1;
+}
+  </code></pre>
+</div>
+<div class="right grail">
+  <header>H</header>
+  <div class="flex-container grail">
+    <article>A<br>R<br>T</article>
+    <nav style="-webkit-order:-1;order:-1;">N</nav>
+    <aside>A</aside>
+  </div>
+  <footer>F</footer>
+</div>
+</section>
+<section>
+  <style scoped>
+    .flex-container > * {
+      min-width: 100px;
+    }
+  </style>
+  <h3>Article flexing</h3>
+  <div class="left">
+<pre><code>
+.flex-container {
+  display: flex;
+}
+.flex-container > * {
+  min-width: 100px;
+}
+nav {
+  order: -1;
+}
+article {
+  flex: 1;
+}
+  </code></pre>
+</div>
+<div class="right grail">
+  <header>H</header>
+  <div class="flex-container grail">
+    <article style="-webkit-flex:1;flex:1;">A<br>R<br>T</article>
+    <nav style="-webkit-order:-1;order:-1;">N</nav>
+    <aside>A</aside>
+  </div>
+  <footer>F</footer>
+</div>
+</section>
+</section>
+
+<section>
+<h3>Grid Layout (code)</h3>
+<p>(nothing stable enough to talk about)</p>
+</section>
+
+<section>
+<h3>Exclusions (code)</h3>
+</section>
+
+<section>
+<h3>create an exclusion</h3>
+<pre><code>
+.exclusion {
+  wrap-flow: both;
+}
+/* auto, both, start, end, clear, maximum, or minimum */
+  </code></pre>
+<img style="border:0;" src="images/wrap-exclusion.png" alt="exclusion example"></img>
+</section>
+
+<section>
+<section>
+<h3>Shapes (code)</h3>
+</section>
+<section>
+<h3>basic shape value syntax</h3>
+<pre><code>
+  rectangle(x y width height [round rx ry]);
+
+  circle(cx cy radius);
+
+  ellipse(cx cy rx ry);
+
+  polygon(x1 y1, x2 y2, ... , xn yn);
+  </code></pre>
+</section>
+<section>
+<h3>shapes from images</h3>
+<p>uses alpha channel path</p>
+<pre><code>
+  url("an-image.png");
+  </pre></code>
+</section>
+</section>
+
+<section>
+  <style scoped>
+    .example {
+      width: 400px;
+      margin: auto;
+    }
+    .text {
+      font-size: 11px; 
+      text-align: left;     
+    }
+    .face {
+      width: 150px;
+      float: left;
+    }
+    .circle-float {
+      -webkit-shape-outside: circle(50%, 50%, 50%);
+    }
+  </style>
+<section>
+<h3>shape-outside and shape-margin</h3>
+<p>for floats and exclusions</p>
+</section>
+<section>
+<h3>start with a float</h3>
+<pre><code>
+.circle-float {
+  float: left;
+}
+  </code></pre>
+  <div class="example">
+    <img class="face" style="border:0;box-shadow:none;margin:0px;" src="images/creepy-circle.png" alt="circular face"></img>
+    <p class="text">As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles. As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles. As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles. As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles.</p>
+  </div>
+</section>
+<section>
+<h3>add a shape-outside</h3>
+<pre><code>
+.circle-float {
+  float: left;
+  shape-outside: circle(50%, 50%, 50%);
+}
+  </code></pre>
+  <div class="example">
+    <img class="face circle-float" style="border:0;box-shadow:none;margin:0px;" src="images/creepy-circle.png" alt="circular face"></img>
+    <p class="text" contenteditable="true">As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles. As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles. As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles. As the number of sides increases, a Polygon approximates to a Circle; and, when the number is very great indeed, say for example three or four hundred, it is extremely difficult for the most delicate touch to feel any polygonal angles.</p>
+  </div>
+</section>
+<section>
+<h3>exclusion with an ellipse</h3>
+<pre><code>
+.ellipse-exclusion {
+  wrap-flow: both;
+  shape-outside: ellipse(50%, 50%, 90%, 30%);
+}
+  </code></pre>
+<img style="border:0;" src="images/exclusion-ellipse-no-margin.png" alt="ellipse exclusion"></img>
+</section>
+<section>
+<h3>adding shape-margin</h3>
+<pre><code>
+.ellipse-exclusion {
+  wrap-flow: both;
+  shape-outside: ellipse(50%, 50%, 90%, 30%);
+  shape-margin: 10px;
+}
+  </code></pre>
+<img style="border:0;" src="images/exclusion-ellipse.png" alt="ellipse exclusion with margin"></img>
+</section>
+</section>
+
+<section>
+<h3>Regions (code)</h3>
+</section>
+
+<section>
+    <style scoped>
+    p {
+      font-size: 8px;
+      text-align: left;
+      text-indent: 1em;
+      margin: 0;
+    }
+    .demo {
+      margin: 20px;
+      position: relative;
+      height: 300px;
+      width: 80%;
+    }
+  </style>
+<section>
+<h3>flow-into creates a named flow</h3>
+</section>
+<section>
+<h3>starting markup</h3>
+<div class="left">
+<pre><code>
+&lt;article&gt;
+  &lt;p&gt;...
+  &lt;img&gt;
+  &lt;p&gt;...
+&lt;/article&gt;
+  </code></pre>
+</div>
+<div class="right">
+    <div class="demo">
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+    <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+  </div>
+</div>
+</section>
+<section>
+<h3>use flow-into</h3>
+<div class="left">
+<pre><code>
+&lt;article&gt;
+  &lt;p&gt;...
+  &lt;img&gt;
+  &lt;p&gt;...
+&lt;/article&gt;
+  </code></pre>
+<pre><code>
+article > p {
+  flow-into: philip;
+}
+  </code></pre>
+</div>
+<div class="right">
+    <div class="demo regionized">
+    <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+  </div>
+</div>
+</section>
+</section>
+
+<section>
+  <style scoped>
+    p {
+      font-size: 8px;
+      text-align: left;
+      text-indent: 1em;
+      margin: 0;
+    }
+    .demo {
+      margin: 20px;
+      position: relative;
+      height: 300px;
+      width: 80%;
+    }
+  </style>	
+<section>
+<h3>flow-from creates regions</h3>
+</section>
+<section>
+  <style scoped>
+ 		.demo::before {
+ 			content: " ";
+      display: block;
+      height: 80px;
+      border: thin solid lightblue;
+    }
+    .demo::after {
+ 			content: " ";
+      display: block;  	
+      border: thin solid lightblue;
+    }
+  </style>	
+<h3>make some boxes</h3>
+<div class="left">
+<pre><code>
+article > p {
+  flow-into: philip;
+}
+article::before {
+  display: block;
+  height: 50vh;
+}
+article::after {
+  display: block;
+}
+  </code></pre>
+</div>
+<div class="right">
+  <div class="demo regionized">
+    <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+  </div>
+</div>
+</section>
+<section>
+  <style scoped>
+    .regionized > p {
+      -webkit-flow-into: demo-flow-2;
+    }
+    .demo::before {
+      -webkit-flow-from: demo-flow-2;
+      display: block;
+      height: 80px;  	
+    }
+    .demo::after {
+      -webkit-flow-from: demo-flow-2;  
+      display: block;  	
+    }
+  </style>
+<h3>add flow-from</h3>
+<div class="left">
+<pre><code>
+article > p {
+  flow-into: philip;
+}
+article::before {
+  flow-from: philip;
+  display: block;
+  height: 50vh;
+}
+article::after {
+  flow-from: philip;
+  display: block;
+}
+  </code></pre></div>
+<div class="right">
+    <div class="demo regionized">
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+    <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+  </div>
+</div>
+</section>
+<section>
+  <style scoped>
+    .regionized > p {
+      -webkit-flow-into: demo-flow-3;
+    }
+    .demo::before {
+      -webkit-flow-from: demo-flow-3;
+      display: block;
+      height: 90px;
+      width: 50%;    	
+    }
+    .demo::after {
+      -webkit-flow-from: demo-flow-3;  
+      display: block;  	
+    }
+  </style>
+	<h3>Change box styling</h3>
+	<div class="left">
+<pre><code>
+article > p {
+  flow-into: philip;
+}
+article::before {
+  flow-from: philip;
+  display: block;
+  height: 50vh;
+  width: 50vw;
+}
+article::after {
+  flow-from: philip;
+  display: block;
+}
+  </code></pre></div>
+	<div class="right">
+	  <div class="demo regionized">
+	    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+	    <img style="border:0;" src="images/Varecia.variegata.rubra.dozing.jpg" alt="lemur"></img>
+	    <p>Thus musing, he took his stand at the entrance of the gate and waited until the personage so singularly announced should make his appearance. After an instant or two he beheld the figure of a lean man, of unwholesome look, with glittering eyes and long black hair, who seemed to imitate the motion of a snake; for, instead of walking straight forward with open front, he undulated along the pavement in a curved line. It may be too fanciful to say that something, either in his moral or material aspect, suggested the idea that a miracle had been wrought by transforming a serpent into a man, but so imperfectly that the snaky nature was yet hidden, and scarcely hidden, under the mere outward guise of humanity. Herkimer remarked that his complexion had a greenish tinge over its sickly white, reminding him of a species of marble out of which he had once wrought a head of Envy, with her snaky locks.</p>
+	  </div>
+	</div>
+</section>
+
+</section>
+
+<section>
+<h3>Demos</h3>
+<a href="http://philipwalton.github.io/solved-by-flexbox/">Philip Walton&rsquo;s Solved by Flexbox</a>
+<a href="http://adobe-webplatform.github.io/Demo-for-National-Geographic-Forest-Giant/browser/src/">CJ Gammon&rsquo;s Region/Shape Layout</a>
+<a href="http://adobe-webplatform.github.io/regions-adaptive/#">Razvan Caliman&rsquo;s Adaptive UI with Named Flows
+</section>
+<!--
+
+        <section>
+          <h3>Export to PDF</h3>
+          <p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
+          <iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
+          <script>
+            document.getElementById('slideshare').attributeName = 'allowfullscreen';
+          </script>
+        </section>
+-->
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+      //order-flexing.addEventListener (onclick, reorder);
+
+      //function reorder(event) {
+        //order-B.style = "-webkit-order:-1;order:-1;";
+      //}
+    </script>
+<script>
+    buttonList = flexyButtons.querySelectorAll("button");
+    for (i=0; i<buttonList.length; i++)
+    {  
+        buttonList[i].onclick=buttonClick;
+    }
+
+    function buttonClick(event) {
+        propName=event.target.name;
+        flexContainer.style[propName] = event.target.innerHTML;
+        webkitPropName = "webkit" + propName[0].toUpperCase() + propName.substring(1);
+        flexContainer.style[webkitPropName] = event.target.innerHTML;
+    }
+</script>
+  </body>
+</html>

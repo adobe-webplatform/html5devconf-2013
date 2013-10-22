@@ -1,0 +1,9 @@
+make the circle shape-outside on float a bit bigger (or the text smaller)
+
+Hi Alan
+
+Great talk.  One minor suggestion.  For newbies, when first mentioning flexbox, it might be good to say there is no relation to Adobe Flex, since this is a MAX talk.  Just in case someone gets confused
+
+.circle {
+  -webkit-shape-inside: circle(50%, 50%, 50%);
+}
