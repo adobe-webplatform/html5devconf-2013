@@ -1,10 +1,8 @@
-Max2013CSSLayoutTalk
+Finally!CSSLayoutTalk
 ====================
 
-Talk on CSS Layout at Adobe MAX 2013
+Talk on CSS Layout at HTML5DevConf
 
 The flexbox demos should work in Chrome Canary and Firefox 21+.
 
 The regions and shapes demos will only work in Chrome Canary.
-
-http://astearns.github.io/Max2013CSSLayoutTalk/
