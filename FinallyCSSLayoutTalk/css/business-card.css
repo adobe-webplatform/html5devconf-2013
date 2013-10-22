@@ -1,0 +1,64 @@
+/*********************************************
+ *      About Me
+ *********************************************/
+.reveal .business-card  {
+    display: inline-block;
+    width: 250px;
+    height: 450px;
+    border-radius: 10px;
+    color: gray;
+    font-size: 18px;
+    border: 1px solid #c0c0c0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    line-height: 1.2em;
+    padding: 1em;
+    position: relative;
+    background: white;
+    font-family:  'Source Sans Pro', Ubuntu, 'Source Sans Pro', 'Myriad Pro', 'Myriad Web Pro', sans-serif;
+}
+
+.reveal .business-card:before {
+    content: '';
+    background: url(../images/adobe-logo.svg) no-repeat;    
+    position: absolute;
+    width: 30px;
+    height: 38px;
+    bottom: 1em;
+    left: 1em;
+}
+
+#head-shot {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    border: 1px solid #e0e0e0;
+    margin: 0;
+    border: 10px solid white;
+    margin-left: -250px;
+    z-index: 100;
+    -webkit-transform: translate(30px, 280px) rotateZ(12deg);
+       -moz-transform: translate(30px, 280px) rotateZ(12deg);
+        -ms-transform: translate(30px, 280px) rotateZ(12deg);
+          transform: translate(30px, 280px) rotate(12deg);
+}
+
+.reveal .business-card .contact-info {
+      margin-top: 2em; 
+}
+
+.reveal .business-card .contact-info a {
+    color: gray;
+    font-size: .8em;
+    font-weight: normal;
+    text-shadow: none;
+    line-height: 1em; 
+}
+
+.reveal .business-card .name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px; 
+}
+
+.reveal .business-card .title, #reveal .business-card .team {
+    font-size: 14px; 
+}
