@@ -4,3 +4,4 @@
 
 - [Finally! Layout in CSS](http://adobe-webplatform.github.io/html5devconf-2013/FinallyCSSLayoutTalk/) by [Alan Stearns](http://twitter.com/alanstearns)
 - [Unmasking the GPU](http://nimbu.in/html5devconf-oct/) by [Divya Manian](http://twitter.com/divya)
+- [How cupackes, Alice in Wonderland and baby elephants are moving the web forward](http://arno.org/20131023/) by [Arno Gourdol](http://twitter.com/arnog)
