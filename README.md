@@ -6,3 +6,4 @@
 - [Unmasking the GPU](http://nimbu.in/html5devconf-oct/) by [Divya Manian](http://twitter.com/divya)
 - [How cupackes, Alice in Wonderland and baby elephants are moving the web forward](http://arno.org/20131023/) by [Arno Gourdol](http://twitter.com/arnog)
 - [Web + Wow](http://slides.cjgammon.com/13-10-web-wow/) by [CJ Gammon](http://twitter.com/cjgammon)
+- [Brackets: An Open Source Code Editor For The Web](http://dev.brackets.io/preso/intro) by [Adam Lehman](http://twitter.com/adrocknaphobia)
